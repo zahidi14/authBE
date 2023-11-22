@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
 const route = require("./src/Routes/BlogRoute");
-const PORT = process.env.PORT;
+const PORT = 8000;
 const db = process.env.DBURL;
 
 const fileStorage = multer.diskStorage({
@@ -35,8 +35,8 @@ const filter = (req, file, cb) => {
 
 app.use(
   cors({
-    origin: ["*"], // Allow requests from any origin
-    methods: ["GET, POST, PUT, PATCH, DELETE, OPTIONS"],
+    origin: ["*"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
@@ -75,7 +75,7 @@ mongoose
     console.log("connected db");
   })
   .catch((err) => {
-    console.log("db cconnection failed");
+    console.log("db cconnection failed", err);
   });
 
 app.listen(PORT, () => {
