@@ -11,11 +11,11 @@ module.exports.userVerification = (req, res) => {
     if (err) {
       return res.json({ status: false });
     } else {
-      const user = userSchema.findById(data.id);
+      const usern = userSchema.findById(data.id);
       if (user)
         return res.json({
           status: true,
-          user: data.id,
+          user: usern,
           message: "fuck of",
         });
       else return res.json({ status: false });
