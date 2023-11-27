@@ -11,14 +11,19 @@ module.exports.userVerification = (req, res) => {
     if (err) {
       return res.json({ status: false });
     } else {
-      const usern = userSchema.findById(data.id);
-      if (user)
-        return res.json({
-          status: true,
-          user: "fuc",
-          message: "fuck of",
-        });
-      else return res.json({ status: false });
+      try {
+        const user = await userSchema.findById(data.id); // Fix: use 'user' instead of 'usern'
+        if (user)
+          return res.json({
+            status: true,
+            user: "fuc",
+            message: "fuck off", // Fix: Corrected the message
+          });
+        else return res.json({ status: false });
+      } catch (error) {
+        console.error("Error fetching user:", error);
+        return res.json({ status: false });
+      }
     }
   });
 };
