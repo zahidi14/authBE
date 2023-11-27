@@ -32,10 +32,10 @@ const filter = (req, file, cb) => {
     cb(null, false);
   }
 };
-
+const corsOrigin = "*" || "http://localhost:5173";
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: corsOrigin,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
